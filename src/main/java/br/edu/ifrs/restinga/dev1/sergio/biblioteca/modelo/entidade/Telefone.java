@@ -5,6 +5,7 @@
  */
 package br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
  *
  * @author sergio
  */
+@Entity
 public class Telefone implements Entidade{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

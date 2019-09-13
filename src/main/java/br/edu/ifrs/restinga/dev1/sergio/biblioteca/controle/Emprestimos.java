@@ -5,8 +5,8 @@
  */
 package br.edu.ifrs.restinga.dev1.sergio.biblioteca.controle;
 
-import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Livro;
-import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.LivroServico;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Emprestimo;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.EmprestimoServico;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.Servico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,26 +19,35 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author default
+ * @author sergio
  */
 
 @RestController
 @RequestMapping("/api")
-public class Livros {
-
+public class Emprestimos {
+    
     @Autowired
-    LivroServico livroServico;
+    EmprestimoServico emprestimoServico;
+
+    public Servico<Emprestimo> getService() {
+        return emprestimoServico;
+    }
     
-    @PostMapping("/livros/")
+    @PostMapping("/emprestimos/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Livro cadastrarLivro(@RequestBody Livro livro) {
-        return livroServico.cadastrar(livro);
+    public Emprestimo cadastrarLivro(@RequestBody Emprestimo emprestimo) {
+        return emprestimoServico.cadastrar(emprestimo);
     }
     
-    @GetMapping("/livros/")
+    @GetMapping("/emprestimos/")
     @ResponseStatus(HttpStatus.OK)
-    public Iterable<Livro> listarLivros() {
-    return livroServico.listar();
+    public Iterable<Emprestimo> listarEmprestimos() {
+    return emprestimoServico.listar();
     }
+    
+    
+    
+    
+    
     
 }

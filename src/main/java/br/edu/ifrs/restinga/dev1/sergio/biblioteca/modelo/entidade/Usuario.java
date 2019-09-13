@@ -5,10 +5,14 @@
  */
 package br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -25,6 +29,10 @@ public class Usuario implements Entidade {
     private String nome;
     private String cpf;
     private String email;
+    
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Telefone> telefones;
 
 /**
      * @return the id
@@ -81,5 +89,21 @@ public class Usuario implements Entidade {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    /**
+     * @return the telefones
+     */
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
+
+    /**
+     * @param telefones the telefones to set
+     */
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
+    }
+    
+    
     
 }

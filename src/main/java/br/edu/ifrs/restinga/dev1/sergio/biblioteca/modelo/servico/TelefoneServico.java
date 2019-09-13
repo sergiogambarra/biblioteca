@@ -22,19 +22,19 @@ import org.springframework.stereotype.Component;
 public class TelefoneServico extends Servico<Telefone> {
 
     @Autowired
-    TelefoneDAO dao;
+    TelefoneDAO telefoneDAO;
     
     @Autowired
     TelefoneRN regraNegocio;
 
     @Override
     public CrudRepository<Telefone, Integer> getDAO() {
-        return  dao;
+        return  telefoneDAO;
     }
 
     @Override
     public RegraNegocio<Telefone> getRegraNegocio() {
-        return regraNegocio;
+        return null;
     }      
 
     
