@@ -12,6 +12,7 @@ import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.dao.UsuarioDAO;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Telefone;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Usuario;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn.RegraNegocio;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn.TelefoneRN;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn.UsuarioRN;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class UsuarioServico extends Servico<Usuario> {
     
     @Autowired
     UsuarioRN usuarioRN;
+    
+    @Autowired
+    TelefoneRN telefoneRN;
 
     @Override
     public CrudRepository<Usuario, Integer> getDAO() {
@@ -45,13 +49,13 @@ public class UsuarioServico extends Servico<Usuario> {
         return usuarioRN;
     }
     
-    @Override
-    public Usuario cadastrar(Usuario usuario) {
+    //@Override
+    public Usuario cadastrar(Usuario usuario, Telefone telefone) throws Throwable {
         usuarioRN.validar(usuario);
-        //if (usuario.getEmbalagem() != null) {
-        //    Embalagem embalagemSalva = embalagemDAO.save(produto.getEmbalagem());
-        //    produto.setEmbalagem(embalagemSalva);
-        //}
+        if (usuario.getTelefones() != null) {
+            Telefone telefoneBanco = telefoneDAO.save(telefone);
+       //     usuario.setTelefones(telefone);
+        }
 
         Usuario usuarioBanco = usuarioDAO.save(usuario);
         return usuarioBanco;

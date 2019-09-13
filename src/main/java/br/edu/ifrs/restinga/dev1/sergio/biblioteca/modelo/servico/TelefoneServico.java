@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class TelefoneServico extends Servico<Telefone> {
-
+public class TelefoneServico  {
+/*
     @Autowired
     TelefoneDAO telefoneDAO;
     
@@ -37,5 +37,5 @@ public class TelefoneServico extends Servico<Telefone> {
         return null;
     }      
 
-    
+    */
 }

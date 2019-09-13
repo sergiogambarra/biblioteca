@@ -15,15 +15,16 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class UsuarioRN implements  RegraNegocio<Usuario> {
+public class UsuarioRN implements RegraNegocio<Usuario> {
     public void validar(Usuario usuario) {
         if(usuario.getCpf()==null||usuario.getEmail()==null||usuario.getNome()==null) 
             throw new QuebraRegraNegocio("todos os campos são obrigatórios");
         if(usuario.getNome()==null||usuario.getNome().trim().length()<3)
             throw new QuebraRegraNegocio("Nome deve ter 3 ou mais letras");
         
-        // Caso seja obrigatorio a embalgem
-        //if(produto.getEmbalagem()==null)            throw new QuebraRegraNegocio("Embalagem não pode ser nulo");
+        // Caso seja obrigatorio um telefone
+        if(usuario.getTelefones()==null || usuario.getTelefones().size()>3)
+            throw new QuebraRegraNegocio("No mínimo um telefone e no máximo três");
     }
 
     @Override
