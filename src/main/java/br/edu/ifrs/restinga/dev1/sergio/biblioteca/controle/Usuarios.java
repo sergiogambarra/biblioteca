@@ -73,10 +73,10 @@ public class Usuarios extends CRUDControle<Usuario>{
 
     @GetMapping("/{idUsuario}/telefones/{idTelefone}")
     @ResponseStatus(HttpStatus.OK)
-    public Telefone recuperarTelefone(@PathVariable int idProduto, @PathVariable int idTelefone) throws Throwable {
-        return usuarioServico.recuperarTelefone(idProduto, idTelefone);
+    public Telefone recuperarTelefone(@PathVariable int idUsuario, @PathVariable int idTelefone) throws Throwable {
+        return usuarioServico.recuperarTelefone(idUsuario, idTelefone);
     }
-
+    
     
     @GetMapping("/{idUsuario}/telefones/")
     @ResponseStatus(HttpStatus.OK)
