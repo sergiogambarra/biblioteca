@@ -5,16 +5,18 @@
  */
 package br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
  * @author sergio
  */
-
+    
 @Entity
 public class Livro implements Entidade{
 
@@ -25,12 +27,18 @@ public class Livro implements Entidade{
     private int anoPublicacao;
     private boolean doacao;
     
+    @ManyToMany
+    private List<Editora> editora;
+    
+    @ManyToMany
+    private List<Autor> autor;
+    
     /**
      * @return the id
      */
     public int getId() {
         return id;
-    }
+}
 
     /**
      * @param id the id to set
@@ -80,5 +88,35 @@ public class Livro implements Entidade{
     public void setDoacao(boolean doacao) {
         this.doacao = doacao;
     }
+
+    /**
+     * @return the editora
+     */
+    public List<Editora> getEditora() {
+        return editora;
+    }
+
+    /**
+     * @param editora the editora to set
+     */
+    public void setEditora(List<Editora> editora) {
+        this.editora = editora;
+    }
+
+    /**
+     * @return the autor
+     */
+    public List<Autor> getAutor() {
+        return autor;
+    }
+
+    /**
+     * @param autor the autor to set
+     */
+    public void setAutor(List<Autor> autor) {
+        this.autor = autor;
+    }
+    
+    
     
 }

@@ -40,17 +40,7 @@ public class Usuarios extends CRUDControle<Usuario>{
         return usuarioServico;
     }
     
-    @PostMapping("/usuarios/")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Usuario cadastrarTelefone(@RequestBody Usuario telefone) {
-        return usuarioServico.cadastrar(telefone);
-    }
     
-    @GetMapping("/usuarios/")
-    @ResponseStatus(HttpStatus.OK)
-    public Iterable<Usuario> listarGeneros() {
-    return usuarioServico.listar();
-    }
     
     @PostMapping("/{idUsuario}/telefones/")
     @ResponseStatus(HttpStatus.CREATED)
@@ -83,6 +73,5 @@ public class Usuarios extends CRUDControle<Usuario>{
     public List<Telefone> listarTelefone(@PathVariable int idUsuario) throws Throwable {
         return usuarioServico.listarTelefone(idUsuario);
     }
-    
     
 }

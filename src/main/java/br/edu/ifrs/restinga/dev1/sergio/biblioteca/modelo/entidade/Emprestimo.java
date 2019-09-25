@@ -42,6 +42,9 @@ public class Emprestimo implements Entidade {
 
     @ManyToOne
     private Livro livro;
+    
+    @ManyToOne
+    private Bibliotecario bibliotecario;
 
     
     
@@ -127,6 +130,20 @@ public class Emprestimo implements Entidade {
      */
     public void setLivro(Livro livro) {
         this.livro = livro;
+    }
+
+    /**
+     * @return the bibliotecario
+     */
+    public Bibliotecario getBibliotecario() {
+        return bibliotecario;
+    }
+
+    /**
+     * @param bibliotecario the bibliotecario to set
+     */
+    public void setBibliotecario(Bibliotecario bibliotecario) {
+        this.bibliotecario = bibliotecario;
     }
     
     

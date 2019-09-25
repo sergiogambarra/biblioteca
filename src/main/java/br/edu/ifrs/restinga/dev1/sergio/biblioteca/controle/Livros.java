@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class Livros {
-
+    
     @Autowired
     LivroServico livroServico;
     
@@ -33,7 +33,7 @@ public class Livros {
     @ResponseStatus(HttpStatus.CREATED)
     public Livro cadastrarLivro(@RequestBody Livro livro) {
         return livroServico.cadastrar(livro);
-    }
+}
     
     @GetMapping("/livros/")
     @ResponseStatus(HttpStatus.OK)
