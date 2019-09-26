@@ -9,6 +9,7 @@ import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.dao.LivroDAO;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Livro;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn.LivroRN;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn.RegraNegocio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,9 @@ public class LivroServico extends Servico<Livro> {
     
     @Autowired
     LivroRN regraNegocio;
+    
+    @Autowired
+    EmprestimoServico emprestimoServico;
 
     @Override
     public CrudRepository<Livro, Integer> getDAO() {
@@ -34,5 +38,9 @@ public class LivroServico extends Servico<Livro> {
     @Override
     public RegraNegocio<Livro> getRegraNegocio() {
         return regraNegocio;
-    }  
+    }
+    
+    public Livro listarLivro(int idEmprestimo) throws Throwable {
+        return emprestimoServico.recuperar(idEmprestimo).getLivro();
+    }
 }

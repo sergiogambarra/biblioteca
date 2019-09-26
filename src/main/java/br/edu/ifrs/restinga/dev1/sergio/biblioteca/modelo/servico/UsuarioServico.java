@@ -9,6 +9,7 @@ import br.edu.ifrs.restinga.dev1.sergio.biblioteca.excecoes.NaoEncontrado;
 
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.dao.TelefoneDAO;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.dao.UsuarioDAO;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Emprestimo;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Telefone;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Usuario;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn.RegraNegocio;
@@ -89,6 +90,17 @@ public class UsuarioServico extends Servico<Usuario> {
         }
         throw new NaoEncontrado("id " + idTelefone + " não foi encontrada");
     }
+    
+ //   public Usuario recuperarUsuario(int idUsuario, int idEmprestimo) throws Throwable {
+ //       Usuario usuario = this.recuperar(idUsuario);
+ //       List<Emprestimo> emprestimos = emprestimo.
+ //       for (Telefone telefone : emprestimos) {
+ //           if (telefone.getId() == idEmprestimo) {
+ //               return usuario;
+ //           }
+ //       }
+ //       throw new NaoEncontrado("id " + idTelefone + " não foi encontrada");
+ //   }
 
     public void atualizarTelefone(int idUsuario, Telefone telefone) throws Throwable {
         this.recuperarTelefone(idUsuario, telefone.getId());

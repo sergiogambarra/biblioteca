@@ -10,14 +10,15 @@ import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Emprestimo;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Livro;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Usuario;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.EmprestimoServico;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.LivroServico;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.Servico;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.UsuarioServico;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,25 +32,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/emprestimos/")
-public class Emprestimos {
+public class Emprestimos extends CRUDControle<Emprestimo> {
     
     @Autowired
     EmprestimoServico emprestimoServico;
+    
+    @Autowired
+    LivroServico livroServico;
+    
+    @Autowired
+    UsuarioServico usuarioServico;
 
     public Servico<Emprestimo> getService() {
         return emprestimoServico;
-    }
-    
-    @PostMapping("/emprestimos/")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Emprestimo cadastrarLivro(@RequestBody Emprestimo emprestimo) {
-        return emprestimoServico.cadastrar(emprestimo);
-    }
-    
-    @GetMapping("/emprestimos/")
-    @ResponseStatus(HttpStatus.OK)
-    public Iterable<Emprestimo> listarEmprestimos() {
-    return emprestimoServico.listar();
     }
     
     @RequestMapping(path = "/{idEmprestimo}/bibliotecarios/", method = RequestMethod.POST)
@@ -94,24 +89,17 @@ public class Emprestimos {
     }
 
     
-    @RequestMapping(path = "/{idEmprestimo}/livros/", method = RequestMethod.GET)
+    @RequestMapping(path = "/{idEmprestimo}/livro/", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<Livro> listarLivro(@PathVariable int idEmprestimo) throws Throwable {
-    //    return this.recuperarLivro(idEmprestimo).idLivro();
-        return null;
-    }
-    
-    @GetMapping("/{idEmprestimo}/livros/{idLivro}")
-    @ResponseStatus(HttpStatus.OK)
-    public Livro recuperarLivro(@PathVariable int idEmprestimo, @PathVariable int idLivro) throws Throwable {
-     //   return servico.recuperarLivro(idEmprestimo,idLivro);
-        return null;
+    public Livro listarLivro(@PathVariable int idEmprestimo) throws Throwable {
+        return livroServico.listarLivro(idEmprestimo);
+        
     }
     
     @RequestMapping(path = "/{idEmprestimo}/usuarios/", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void associarUsuario(@PathVariable int idEmprestimo, @RequestBody Usuario usuario) throws Throwable {
-       // servico.associarUsuario(idEmprestimo, fornecedor);
+       // servico.associarUsuario(idEmprestimo, usuario);
         
     }
 
@@ -124,8 +112,8 @@ public class Emprestimos {
     
     @RequestMapping(path = "/{idEmprestimo}/usuarios/", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<Usuario> listarUsuario(@PathVariable int idEmprestimo) throws Throwable {
-    //    return this.recuperarUsuario(idEmprestimo).idUsuario();
+    public Usuario listarUsuario(@PathVariable int idEmprestimo) throws Throwable {
+     //   return usuarioServico.recuperarUsuario(idEmprestimo).idUsuario();
         return null;
     }
     
