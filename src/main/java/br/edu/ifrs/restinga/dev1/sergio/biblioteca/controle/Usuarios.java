@@ -52,7 +52,7 @@ public class Usuarios extends CRUDControle<Usuario>{
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizarTelefone(@PathVariable int idUsuario, @PathVariable int idTelefone, @RequestBody Telefone telefone) throws Throwable {
         telefone.setId(idTelefone);
-        usuarioServico.atualizarTelefone(idTelefone, telefone);
+        usuarioServico.atualizarTelefone(idUsuario, telefone);
     }
     
     @DeleteMapping("/{idUsuario}/telefones/{idTelefone}")

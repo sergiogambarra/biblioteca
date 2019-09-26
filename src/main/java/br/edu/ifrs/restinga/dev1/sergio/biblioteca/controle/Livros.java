@@ -11,6 +11,7 @@ import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.Servico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,12 @@ public class Livros {
     @ResponseStatus(HttpStatus.OK)
     public Iterable<Livro> listarLivros() {
     return livroServico.listar();
+    }
+    
+    @GetMapping("/livros/{idLivro}")
+    @ResponseStatus(HttpStatus.OK)
+    public Livro recuperarLivro(@PathVariable int idLivro) throws Throwable {
+        return livroServico.recuperar(idLivro);
     }
     
 }
