@@ -5,7 +5,11 @@
  */
 package br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn;
 
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.excecoes.QuebraRegraNegocio;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Telefone;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Usuario;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.UsuarioServico;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,8 +17,14 @@ import org.springframework.stereotype.Component;
  * @author sergio
  */
 
+
+
 @Component
 public class TelefoneRN implements RegraNegocio<Telefone> {
+    
+    @Autowired
+    UsuarioServico usuarioServico;
+    
     public void validar(Telefone telefone) {
        // if(emprestimo.getTitulo()==null)
        //     throw new QuebraRegraNegocio("todos os campos são obrigatórios");
@@ -25,14 +35,21 @@ public class TelefoneRN implements RegraNegocio<Telefone> {
         
     }
 
-    @Override
-    public void validarCadastrar(Telefone entidade) {
+    public void validarCadastrar(int idUsuario, Telefone entidade) throws Throwable {
+        Usuario usuario = usuarioServico.recuperar(idUsuario);
+        if(usuario.getTelefones().size()>=3)
+            throw new QuebraRegraNegocio("No máximo 3 telefones");
         validar(entidade);
     }
 
     @Override
     public void validarAtualizar(Telefone entidadeAtinga, Telefone entidadeNova) {
         validar(entidadeNova);
+    }
+    
+    @Override
+    public void validarCadastrar(Telefone entidade) {
+        validar(entidade);
     }
 
     @Override

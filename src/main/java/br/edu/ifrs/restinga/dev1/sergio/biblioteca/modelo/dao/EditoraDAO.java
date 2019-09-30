@@ -5,13 +5,13 @@
  */
 package br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.dao;
 
-import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Emprestimo;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Editora;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author default
  */
-public interface EditoraDAO extends CrudRepository<Emprestimo, Integer>{
+public interface EditoraDAO extends CrudRepository<Editora, Integer>{
     
 }

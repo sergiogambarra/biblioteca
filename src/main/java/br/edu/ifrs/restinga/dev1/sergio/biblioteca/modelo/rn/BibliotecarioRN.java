@@ -5,7 +5,8 @@
  */
 package br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn;
 
-import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Emprestimo;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.excecoes.QuebraRegraNegocio;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Bibliotecario;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,21 +14,34 @@ import org.springframework.stereotype.Component;
  * @author default
  */
 @Component
-public class BibliotecarioRN implements  RegraNegocio<Emprestimo> {
+public class BibliotecarioRN implements RegraNegocio<Bibliotecario> {
 
-    @Override
-    public void validarCadastrar(Emprestimo entidade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void validar(Bibliotecario entidade) {
+        
+       // if (emprestimo.isDoacao())
+       //     throw new QuebraRegraNegocio("todos os campos são obrigatórios");
+        //if(livro.getAnoPublicacao())
+        //    throw new QuebraRegraNegocio("Nome deve ter 3 ou mais letras");
+        
     }
-
+    
     @Override
-    public void validarAtualizar(Emprestimo entidadeAtinga, Emprestimo entidadeNova) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void validarCadastrar(Bibliotecario entidade) {
+        if(entidade.getSenha().equals("") || entidade.getEmail().equals("") || entidade.getNome().equals(""))
+            throw new QuebraRegraNegocio("todos os campos devem ser preenchidos");
+        if(entidade.getSenha().length() < 8)
+            throw new QuebraRegraNegocio("senha com no mínimo 8 caracteres");
+        validar(entidade);
     }
-
+    
     @Override
-    public void validarExcluir(Emprestimo entidade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void validarAtualizar(Bibliotecario entidadeAtinga, Bibliotecario entidadeNova) {
+       validar(entidadeNova);
+    }
+    
+    @Override
+    public void validarExcluir(Bibliotecario entidade) {
+      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

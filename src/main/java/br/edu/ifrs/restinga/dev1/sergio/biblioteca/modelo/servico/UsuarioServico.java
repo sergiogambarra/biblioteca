@@ -9,7 +9,6 @@ import br.edu.ifrs.restinga.dev1.sergio.biblioteca.excecoes.NaoEncontrado;
 
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.dao.TelefoneDAO;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.dao.UsuarioDAO;
-import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Emprestimo;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Telefone;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Usuario;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn.RegraNegocio;
@@ -51,11 +50,26 @@ public class UsuarioServico extends Servico<Usuario> {
     }
     
     //@Override
-    public Usuario cadastrar(Usuario usuario, Telefone telefone) throws Throwable {
-        usuarioRN.validar(usuario);
+    public Usuario cadastrar(Usuario usuario, List<Telefone> telefone) throws Throwable {
         if (usuario.getTelefones() != null) {
-            Telefone telefoneBanco = telefoneDAO.save(telefone);
-       //     usuario.setTelefones(telefone);
+            for (int i=0;i<telefone.size();i++) {
+                telefoneRN.validar(telefone.get(i));
+                Telefone telefoneBanco = telefoneDAO.save(telefone.get(i));
+                }
+            //telefoneRN.validar(telefone);
+            usuario.setTelefones(telefone);
+        }
+        usuarioRN.validar(usuario);
+        usuario.setTelefones(telefone);
+  //      List<Telefone> telefones = usuario.getTelefones();
+        if (usuario.getTelefones() != null) {
+  //          for (Telefone telefone : telefones) {
+  //              if (telefone.getId() == idTelefone) {
+  //                  return telefone;
+  //              }
+  //          }
+ //               Telefone telefoneBanco = telefoneDAO.save(telefone);
+      //          usuario.setTelefones(telefone);
         }
 
         Usuario usuarioBanco = usuarioDAO.save(usuario);
@@ -74,6 +88,7 @@ public class UsuarioServico extends Servico<Usuario> {
     public Telefone cadastrarTelefone(int idUsuario, Telefone telefone) throws Throwable {
         Usuario usuario = this.recuperar(idUsuario);
         telefone.setId(0);
+        telefoneRN.validarCadastrar(idUsuario, telefone);
         Telefone telefoneBanco = telefoneDAO.save(telefone);
         usuario.getTelefones().add(telefoneBanco);
         usuarioDAO.save(usuario);

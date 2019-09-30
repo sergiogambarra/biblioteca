@@ -21,8 +21,9 @@ public class Bibliotecario implements Entidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String primeiroNome;
-    private String segundoNome;
+    private String nome;
+    private String email;
+    private String senha;
 
     /**
      * @return the id
@@ -39,32 +40,48 @@ public class Bibliotecario implements Entidade {
     }
 
     /**
-     * @return the primeiroNome
+     * @return the nome
      */
-    public String getPrimeiroNome() {
-        return primeiroNome;
+    public String getNome() {
+        return nome;
     }
 
     /**
-     * @param primeiroNome the primeiroNome to set
+     * @param nome the nome to set
      */
-    public void setPrimeiroNome(String primeiroNome) {
-        this.primeiroNome = primeiroNome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     /**
-     * @return the segundoNome
+     * @return the email
      */
-    public String getSegundoNome() {
-        return segundoNome;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * @param segundoNome the segundoNome to set
+     * @param email the email to set
      */
-    public void setSegundoNome(String segundoNome) {
-        this.segundoNome = segundoNome;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    /**
+     * @return the senha
+     */
+    public String getSenha() {
+        return senha;
+    }
+
+    /**
+     * @param senha the senha to set
+     */
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    
 
     
 }

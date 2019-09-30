@@ -9,6 +9,7 @@ import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Bibliotecario
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Emprestimo;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Livro;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Usuario;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.BibliotecarioServico;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.EmprestimoServico;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.LivroServico;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.Servico;
@@ -42,6 +43,9 @@ public class Emprestimos extends CRUDControle<Emprestimo> {
     
     @Autowired
     UsuarioServico usuarioServico;
+    
+    @Autowired
+    BibliotecarioServico bibliotecarioServico;
 
     public Servico<Emprestimo> getService() {
         return emprestimoServico;
@@ -50,14 +54,14 @@ public class Emprestimos extends CRUDControle<Emprestimo> {
     @RequestMapping(path = "/{idEmprestimo}/bibliotecarios/", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void associarBibliotecario(@PathVariable int idEmprestimo, @RequestBody Bibliotecario bibliotecario) throws Throwable {
-       // servico.associarBibliotecario(idEmprestimo, fornecedor);
+        emprestimoServico.associarBibliotecario(idEmprestimo, bibliotecario);
         
     }
 
     @DeleteMapping("/{idEmprestimo}/bibliotecarios/{idBibliotecario}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void desassociarBibliotecario(@PathVariable int idEmprestimo, @PathVariable int idBibliotecario) throws Throwable {
-     //    servico.desassociarBibliotecario(idEmprestimo,idBibliotecario);
+         emprestimoServico.desassociarBibliotecario(idEmprestimo,idBibliotecario);
     }
 
     
@@ -71,8 +75,8 @@ public class Emprestimos extends CRUDControle<Emprestimo> {
     @GetMapping("/{idEmprestimo}/bibliotecarios/{idBibliotecario}")
     @ResponseStatus(HttpStatus.OK)
     public Bibliotecario recuperarBibliotecario(@PathVariable int idEmprestimo, @PathVariable int idBibliotecario) throws Throwable {
-     //   return servico.recuperarBibliotecario(idEmprestimo,idBibliotecario);
-        return null;
+        return emprestimoServico.recuperarBibliotecario(idEmprestimo,idBibliotecario);
+       // return null;
     }
     
     @RequestMapping(path = "/{idEmprestimo}/livros/", method = RequestMethod.POST)

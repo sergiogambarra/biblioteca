@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api/usuarios/")
 public class Usuarios extends CRUDControle<Usuario>{
     
     @Autowired
@@ -39,7 +39,6 @@ public class Usuarios extends CRUDControle<Usuario>{
     public Servico<Usuario> getService() {
         return usuarioServico;
     }
-    
     
     
     @PostMapping("/{idUsuario}/telefones/")

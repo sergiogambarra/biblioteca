@@ -23,8 +23,8 @@ public class UsuarioRN implements RegraNegocio<Usuario> {
             throw new QuebraRegraNegocio("Nome deve ter 3 ou mais letras");
         
         // Caso seja obrigatorio um telefone
-        if(usuario.getTelefones()==null)
-            throw new QuebraRegraNegocio("No mínimo um telefone e no máximo três");
+      //  if(usuario.getTelefones()==null)
+      //      throw new QuebraRegraNegocio("No mínimo um telefone e no máximo três");
     }
 
     @Override
