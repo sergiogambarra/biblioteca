@@ -16,10 +16,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class LivroRN implements  RegraNegocio<Livro> {
     public void validar(Livro livro) {
-        if(livro.getTitulo()==null)
+        if(livro.getTitulo()==null||livro.getAnoPublicacao()==0)
             throw new QuebraRegraNegocio("todos os campos são obrigatórios");
-        if (livro.isDoacao())
-            throw new QuebraRegraNegocio("todos os campos são obrigatórios");
+      //  if (livro.isDoacao())
+      //      throw new QuebraRegraNegocio("todos os campos são obrigatórios");
         //if(livro.getAnoPublicacao())
         //    throw new QuebraRegraNegocio("Nome deve ter 3 ou mais letras");
         

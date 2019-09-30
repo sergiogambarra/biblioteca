@@ -6,6 +6,7 @@
 package br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico;
 
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.dao.LivroDAO;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Autor;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Livro;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn.LivroRN;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn.RegraNegocio;
@@ -41,5 +42,11 @@ public class LivroServico extends Servico<Livro> {
     
     public Livro listarLivro(int idEmprestimo) throws Throwable {
         return emprestimoServico.recuperar(idEmprestimo).getLivro();
+    }
+    
+    public void associarAutor(int idLivro, Autor autor) throws Throwable {
+        Livro livro = this.recuperar(idLivro);
+        livro.getAutor().add(autor);
+        dao.save(livro);
     }
 }

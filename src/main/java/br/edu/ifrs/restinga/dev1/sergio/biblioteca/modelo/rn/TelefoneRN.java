@@ -25,9 +25,9 @@ public class TelefoneRN implements RegraNegocio<Telefone> {
     @Autowired
     UsuarioServico usuarioServico;
     
-    public void validar(Telefone telefone) {
-       // if(emprestimo.getTitulo()==null)
-       //     throw new QuebraRegraNegocio("todos os campos são obrigatórios");
+    public void validar(Telefone entidade) {
+        if(entidade.getNumero()==0||entidade.getArea()==0)
+            throw new QuebraRegraNegocio("Campos numero e área obrigatorios");
        // if (emprestimo.isDoacao())
        //     throw new QuebraRegraNegocio("todos os campos são obrigatórios");
         //if(livro.getAnoPublicacao())
