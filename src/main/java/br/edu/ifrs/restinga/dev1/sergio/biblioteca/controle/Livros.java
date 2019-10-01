@@ -53,7 +53,7 @@ public class Livros extends CRUDControle<Livro> {
         servico.associarAutor(idLivro, autor);
         
     }
-    
+       
     @GetMapping("/{idLivro}/autores/")
     @ResponseStatus(HttpStatus.OK)
     public List<Autor> listarAutores(@PathVariable int idLivro) throws Throwable {

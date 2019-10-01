@@ -22,13 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/autores/")
 public class Autores extends CRUDControle<Autor> {
         @Autowired
-        AutorServico autorServico;
+        AutorServico servico;
     
         @Override
         public Servico<Autor> getService() {
-            return autorServico;
+            return servico;
         }
-    
+           
  //   @PostMapping("/livros/")
  //   @ResponseStatus(HttpStatus.CREATED)
  //   public Livro cadastrarLivro(@RequestBody Bibliotecario bibliotecario) {
