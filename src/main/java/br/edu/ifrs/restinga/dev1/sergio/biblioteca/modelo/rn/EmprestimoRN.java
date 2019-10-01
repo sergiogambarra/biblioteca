@@ -5,7 +5,11 @@
  */
 package br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.rn;
 
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.excecoes.QuebraRegraNegocio;
 import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.entidade.Emprestimo;
+import br.edu.ifrs.restinga.dev1.sergio.biblioteca.modelo.servico.EmprestimoServico;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,13 +18,23 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class EmprestimoRN implements  RegraNegocio<Emprestimo> {
-    public void validar(Emprestimo emprestimo) {
-       // if(emprestimo.getTitulo()==null)
-       //     throw new QuebraRegraNegocio("todos os campos são obrigatórios");
-       // if (emprestimo.isDoacao())
-       //     throw new QuebraRegraNegocio("todos os campos são obrigatórios");
-        //if(livro.getAnoPublicacao())
-        //    throw new QuebraRegraNegocio("Nome deve ter 3 ou mais letras");
+    @Autowired
+    EmprestimoServico servico;
+    
+    public void validar(Emprestimo entidade) {
+        if(entidade.getLivro()==null||entidade.getUsuario()==null||entidade.getBibliotecario()==null)
+            throw new QuebraRegraNegocio("Livro, Usuario e Bibliotecario são obrigatorios");
+        if(entidade.getRetirada()!=null)
+            throw new QuebraRegraNegocio("A data de retirada sera definida pelo sistema");
+        if(entidade.getDevolucao()!=null)
+            throw new QuebraRegraNegocio("A data de devolucao sera definida pelo sistema");
+        
+       
+       List<Emprestimo> emprestimos = (List<Emprestimo>) servico.listar();
+        for (int i=0;i<emprestimos.size();i++){
+ //           if (emprestimos.get(i).getPrimeiroNome().equals(entidade.getPrimeiroNome()))
+ //               throw new QuebraRegraNegocio("nome e sobrenome ja cadastrado");
+        }
         
     }
 
